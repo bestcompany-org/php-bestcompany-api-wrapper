@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/bestcompany/bestcompany-api.svg?style=flat-square)](https://packagist.org/packages/bestcompany/bestcompany-api)
 ![GitHub Actions](https://github.com/bestcompany/bestcompany-api/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This is a package to interact with the bestcompany api.
 
 ## Installation
 
@@ -17,24 +17,8 @@ composer require bestcompany/bestcompany-api
 ## Usage
 
 ```php
-// Usage description here
+TODO
 ```
-
-### Testing
-
-```bash
-composer test
-```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-### Security
 
 If you discover any security related issues, please email cpope@bestcompany.com instead of using the issue tracker.
 
