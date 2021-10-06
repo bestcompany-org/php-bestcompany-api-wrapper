@@ -42,10 +42,7 @@ class Client
      * @param array  $options       An array of options to send with the request
      * @param string $query_string  A query string to send with the request
      *
-     * @throws \SevenShores\Hubspot\Exceptions\BadRequest
-     * @throws \SevenShores\Hubspot\Exceptions\HubspotException
-     *
-     * @return ResponseInterface|\SevenShores\Hubspot\Http\Response
+     * @return Object
      */
     public function request($method, $path, array $options = [], $query_string = null)
     {
@@ -60,7 +57,12 @@ class Client
       $options['Accept'] = 'application/json';
       $options['headers']['Authorization'] = 'Bearer ' . $this->key;
       try {
-        return $this->client->request($method, $url, $options);
+        // This is simplistic for a response
+        // probably want a custom response class
+        // That way we could add useful methods.
+        $response = $this->client->request($method, $url, $options);
+        $jsonString = (string) $response->getBody();
+        return json_decode($jsonString);
       } catch (ServerException $e) {
         return $e;
       } catch (ClientException $e) {

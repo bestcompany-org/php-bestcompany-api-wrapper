@@ -9,7 +9,7 @@ class Reviews extends Resource
     /**
      * Get all reviews.
      *
-     * @return \Bestcompany\BestcompanyApi\Http\Client::request
+     * @return Object
      */
     public function all(array $params = [])
     {
@@ -28,7 +28,7 @@ class Reviews extends Resource
      *
      * @param int $id
      *
-     * @return \Bestcompany\BestcompanyApi\Http\Client::request
+     * @return Object
      */
     public function getById($id, $params = [])
     {

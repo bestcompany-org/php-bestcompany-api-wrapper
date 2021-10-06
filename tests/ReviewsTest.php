@@ -37,11 +37,8 @@ class ReviewsTest extends BaseTestCase
           'hostname' => $this->hostname
         ]);
 
-        $response = $api->reviews()->all();
-        $this->assertEquals(200, $response->getStatusCode());
-        $body = (string) $response->getBody();
-        $json = json_decode($body);
-        $this->assertObjectHasAttribute('current_page',$json);
+        $data = $api->reviews()->all();
+        $this->assertObjectHasAttribute('current_page', $data);
     }
 
     function test_single_review(): void
@@ -51,12 +48,9 @@ class ReviewsTest extends BaseTestCase
           'hostname' => $this->hostname
         ]);
 
-        $response = $api->reviews()->getById(1);
-        $this->assertEquals(200, $response->getStatusCode());
-        $body = (string) $response->getBody();
-        $json = json_decode($body);
-        $this->assertObjectHasAttribute('id', $json);
-        $this->assertObjectHasAttribute('live_version', $json);
-        $this->assertObjectHasAttribute('reviewer', $json);
+        $data = $api->reviews()->getById(1);
+        $this->assertObjectHasAttribute('id', $data);
+        $this->assertObjectHasAttribute('live_version', $data);
+        $this->assertObjectHasAttribute('reviewer', $data);
     }
 }

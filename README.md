@@ -14,10 +14,19 @@ You can install the package via composer:
 composer require bestcompany/bestcompany-api
 ```
 
+Then if using laravel publish your config file by running the command.
+
+`php artisan vendor:publish --provider="Bestcompany\BestcompanyApi\BestcompanyApiServiceProvider" --tag="config"`
+
+Add your api key to the .env using the key from the config file.
+
 ## Usage
 
+
 ```php
-TODO
+$api = new BestcompanyApi;
+
+$api->reviews()->all();
 ```
 
 If you discover any security related issues, please email cpope@bestcompany.com instead of using the issue tracker.
