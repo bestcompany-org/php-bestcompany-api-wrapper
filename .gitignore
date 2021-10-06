@@ -1,0 +1,8 @@
+# Directories
+/.idea
+/vendor
+# Files
+.env
+composer.phar
+composer.lock
+.DS_Store
