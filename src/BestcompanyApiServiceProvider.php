@@ -21,8 +21,8 @@ class BestcompanyApiServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('bestcompany-api.php'),
-            ], 'config');
+                __DIR__.'/../config/bcapi.php' => config_path('bestcompany-api.php'),
+            ]);
 
             // Publishing the views.
             /*$this->publishes([
@@ -50,7 +50,7 @@ class BestcompanyApiServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'bestcompany-api');
+        $this->mergeConfigFrom(__DIR__.'/../config/bcapi.php', 'bestcompany-api');
 
         // Register the main class to use with the facade
         $this->app->singleton('bestcompany-api', function () {
