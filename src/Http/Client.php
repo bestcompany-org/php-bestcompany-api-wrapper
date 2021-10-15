@@ -60,9 +60,6 @@ class Client
         // This is simplistic for a response
         // probably want a custom response class
         // That way we could add useful methods.
-        if (!empty($query_string)) {
-          dd($url);
-        }
         $response = $this->client->request($method, $url, $options);
         $jsonString = (string) $response->getBody();
         return json_decode($jsonString);
