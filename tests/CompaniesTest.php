@@ -49,7 +49,16 @@ class CompaniesTest extends BaseTestCase
       ]);
 
       $data = $api->companies()->getById(1);
-      $this->assertObjectHasAttribute('id', $data);
+      $this->assertObjectHasAttribute('title', $data);
+      $this->assertObjectHasAttribute('slug', $data);
+      $this->assertObjectHasAttribute('computed_rank', $data);
+      $this->assertObjectHasAttribute('computed_score', $data);
+      $this->assertObjectHasAttribute('computed_user_score', $data);
+      $this->assertObjectHasAttribute('vertical_id', $data);
+      $this->assertObjectHasAttribute('payout_event', $data);
+      $this->assertObjectHasAttribute('phone_number', $data);
+      $this->assertObjectHasAttribute('thumbnail_url', $data);
+      $this->assertObjectHasAttribute('star_rating', $data);
     }
 
     function test_recommendation_of_companies(): void

@@ -34,7 +34,6 @@ class BestcompanyApi
     public function __call(string $name, $args): Resource
     {
       $resource = 'Bestcompany\\BestcompanyApi\\Resources\\' . ucfirst($name);
-
       return new $resource($this->client, ...$args);
     }
 
