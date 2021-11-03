@@ -4,6 +4,7 @@ namespace Bestcompany\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Http\Client;
 use Bestcompany\BestcompanyApi\Resources\Resource;
+use Bestcompany\BestcompanyApi\Exceptions\SignatureVerificationException;
 
 class BestcompanyApi
 {
@@ -49,5 +50,23 @@ class BestcompanyApi
     public static function create(array $config = [], Client $client = null, array $clientOptions = []): self
     {
       return new static($config, $client, $clientOptions);
+    }
+
+    public static function webhook(array $payload, string $signatureHeader, string $secret, bool $test = false)
+    {
+      $headers = headerStringToArray($signatureHeader);
+      $now = time();
+      $timestamp = $headers['t'];
+      $timestampDifferenceInMinutes = abs($now - intval($timestamp)) / 60;
+      if ($timestampDifferenceInMinutes > 5) {
+        throw new \UnexpectedValueException('Timestamp Invalid', 422);
+      }
+      $signature = $test ? $headers['test'] : $headers['signature'];
+      $signedPayload = (string) $timestamp . json_encode($payload);
+      $generatedSignature = hash_hmac("sha256", $signedPayload, $secret);
+      if ($signature === $generatedSignature) {
+        return $payload;
+      }
+      throw new SignatureVerificationException('Signature Invalid', 400);
     }
 }
