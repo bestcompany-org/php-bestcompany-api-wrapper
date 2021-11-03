@@ -3,6 +3,7 @@
 namespace Bestcompany\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Http\Client;
+use Bestcompany\BestcompanyApi\Util\WebhookEvent;
 use Bestcompany\BestcompanyApi\Resources\Resource;
 use Bestcompany\BestcompanyApi\Exceptions\SignatureVerificationException;
 
@@ -65,7 +66,12 @@ class BestcompanyApi
       $signedPayload = (string) $timestamp . json_encode($payload);
       $generatedSignature = hash_hmac("sha256", $signedPayload, $secret);
       if ($signature === $generatedSignature) {
-        return $payload;
+        $payload['lol'] = 'rofl';
+        try {
+          return new WebhookEvent($payload['key'], $payload['event'], $payload['data'], $payload['created']);
+        } catch (\Throwable $e) {
+          throw new \UnexpectedValueException('Payload Invalid', 422);
+        }
       }
       throw new SignatureVerificationException('Signature Invalid', 400);
     }

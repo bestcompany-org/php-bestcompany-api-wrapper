@@ -5,6 +5,7 @@ namespace Bestcompany\BestcompanyApi\Tests;
 use Bestcompany\BestcompanyApi\BestcompanyApi;
 use Bestcompany\BestcompanyApi\Tests\BaseTestCase;
 use Bestcompany\BestcompanyApi\Exceptions\SignatureVerificationException;
+use Bestcompany\BestcompanyApi\Util\WebhookEvent;
 
 class WebhookTest extends BaseTestCase
 {
@@ -47,6 +48,20 @@ class WebhookTest extends BaseTestCase
     $this->assertEquals($this->payload, $event);
   }
 
+  function test_invalid_payload(): void
+  {
+    $this->expectException('UnexpectedValueException');
+    $this->expectExceptionMessage('Payload Invalid');
+    $payload = [];
+    $timestamp = time();
+    $secret = 'bctestsignature';
+    $testSignature = $this->createSignatureHash($timestamp, $payload, $secret);
+    $signatureHeader = "t=$timestamp,signature=$testSignature,test=$testSignature";
+    $event = BestcompanyApi::webhook($payload, $signatureHeader, $secret, true);
+    $this->assertInstanceOf(WebhookEvent::class, $event);
+    $this->assertEquals($payload, (array) $event);
+  }
+
   function test_valid_webhook(): void
   {
     $timestamp = time();
@@ -54,7 +69,8 @@ class WebhookTest extends BaseTestCase
     $testSignature = $this->createSignatureHash($timestamp, $this->payload, $secret);
     $signatureHeader = "t=$timestamp,signature=$testSignature,test=$testSignature";
     $event = BestcompanyApi::webhook($this->payload, $signatureHeader, $secret, true);
-    $this->assertEquals($this->payload, $event);
+    $this->assertInstanceOf(WebhookEvent::class, $event);
+    $this->assertEquals($this->payload, (array) $event);
   }
   private function createSignatureHash(int $timestamp, Array $payload, string $secret)
   {
