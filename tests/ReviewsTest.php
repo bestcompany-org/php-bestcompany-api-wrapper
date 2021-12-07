@@ -38,7 +38,8 @@ class ReviewsTest extends BaseTestCase
         ]);
 
         $data = $api->reviews()->all();
-        $this->assertObjectHasAttribute('current_page', $data);
+        $this->assertObjectHasAttribute('data', $data);
+        $this->assertObjectHasAttribute('meta', $data);
     }
 
     function test_single_review(): void
