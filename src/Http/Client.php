@@ -64,9 +64,9 @@ class Client
         $jsonString = (string) $response->getBody();
         return json_decode($jsonString);
       } catch (ServerException $e) {
-        return $e;
+        throw $e;
       } catch (ClientException $e) {
-        return $e;
+        throw $e;
       }
     }
 
