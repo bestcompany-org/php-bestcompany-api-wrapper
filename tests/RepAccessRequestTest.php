@@ -3,6 +3,7 @@
 namespace Bestcompany\BestcompanyApi\Tests;
 
 use InvalidArgumentException;
+use GuzzleHttp\Exception\ClientException;
 use Bestcompany\BestcompanyApi\BestcompanyApi;
 use Bestcompany\BestcompanyApi\Tests\BaseTestCase;
 
@@ -21,6 +22,8 @@ class RepAccessRequestTest extends BaseTestCase
 
   function test_it_requires_valid_api_key(): void
   {
+    $this->expectException(ClientException::class);
+
     $api = new BestcompanyApi([
       'key' => 'asdfasdf',
       'hostname' => $this->hostname

@@ -3,6 +3,7 @@
 namespace Bestcompany\BestcompanyApi\Tests;
 
 use InvalidArgumentException;
+use GuzzleHttp\Exception\ClientException;
 use Bestcompany\BestcompanyApi\BestcompanyApi;
 use Bestcompany\BestcompanyApi\Tests\BaseTestCase;
 
@@ -21,6 +22,8 @@ class ReviewBsUserFavoritesTest extends BaseTestCase
 
   function test_it_requires_valid_api_key(): void
   {
+    $this->expectException(ClientException::class);
+
     $api = new BestcompanyApi([
       'key' => 'asdfasdf',
       'hostname' => $this->hostname
@@ -33,7 +36,7 @@ class ReviewBsUserFavoritesTest extends BaseTestCase
   function test_it_creates_a_favorite(): void
   {
       $api = new BestcompanyApi([
-        'key' => 'asdfasdf',
+        'key' => $this->key,
         'hostname' => $this->hostname
       ]);
 
@@ -43,8 +46,6 @@ class ReviewBsUserFavoritesTest extends BaseTestCase
       ];
 
       $data = $api->reviewBsUserFavorites()->create($formData);
-
-      $this->assertEquals(401, $data->getResponse()->getStatusCode());
 
       $this->assertObjectHasAttribute('id', $data);
       $this->assertEquals($data->review_id, $formData['review_id']);
