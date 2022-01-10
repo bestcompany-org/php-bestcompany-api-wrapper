@@ -16,6 +16,9 @@ class Client
     /** @var string */
     public $hostname;
 
+    /** @var string */
+    public $version;
+
     /** @var \GuzzleHttp\Client */
     public $client;
 
@@ -23,11 +26,9 @@ class Client
     {
       $this->clientOptions = $clientOptions;
       $this->wrapResponse = $wrapResponse;
-      $this->key = isset($config['key']) ? $config['key'] : getenv('BC_API_KEY');
-      $this->hostname = isset($config['hostname']) ? $config['hostname'] : getenv('BC_HOSTNAME');
-      if (!$this->hostname) {
-        $this->hostname = 'https://api2.bestcompany.com/api';
-      }
+      $this->key = $this->safelyGetConfig('key', 'BC_API_KEY', null, $config);
+      $this->hostname = $this->safelyGetConfig('hostname', 'BC_HOSTNAME', 'https://api2.bestcompany.com/api', $config);
+      $this->version = $this->safelyGetConfig('version', 'BC_API_VERSION', 'v1', $config);
       if (is_null($client)) {
         $client = new GuzzleClient();
       }
@@ -72,12 +73,22 @@ class Client
 
     protected function generateUrl($path, $query_string = null)
     {
-      $url = $this->hostname.'/'.$path . '?';
+      $formattedVersion = $this->version && $this->version !== '' ? $this->version.'/' : '';
+      $url = $this->hostname.'/'.$formattedVersion.$path . '?';
       $query_params = [];
 
       $query_string .= $this->addQuery($query_string, http_build_query($query_params));
 
       return $url . $query_string;
+    }
+
+    protected function safelyGetConfig(String $configKey, String $envKey, Mixed $default, array $config = [])
+    {
+        $value = isset($config[$configKey]) ? $config[$configKey] : getenv($envKey);
+        if ($value === null || $value === false) {
+          return $default;
+        }
+        return $value;
     }
 
     /**

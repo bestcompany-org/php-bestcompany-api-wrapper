@@ -56,7 +56,8 @@ class BestcompanyApiServiceProvider extends ServiceProvider
         $this->app->singleton('bestcompany-api', function () {
             return BestcompanyApi::create([
               'key' => env('BC_API_KEY', config('bcapi.api_key')),
-              'hostname' => env('BC_HOSTNAME', config('bcapi.hostname'))
+              'hostname' => env('BC_HOSTNAME', config('bcapi.hostname')),
+              'version' => env('BC_API_VERSION', config('bcapi.version')),
             ]);
         });
     }

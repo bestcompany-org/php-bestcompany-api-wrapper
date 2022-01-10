@@ -21,4 +21,6 @@ return [
 
   'hostname' => env('BC_HOSTNAME', 'api2.bestcompany.com'),
 
+  'version' => env('BC_API_VERSION', 'v1')
+
 ];

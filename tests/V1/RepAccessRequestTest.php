@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Tests;
+namespace Bestcompany\BestcompanyApi\Tests\V1;
 
 use InvalidArgumentException;
 use GuzzleHttp\Exception\ClientException;
@@ -14,7 +14,8 @@ class RepAccessRequestTest extends BaseTestCase
     $this->expectException(InvalidArgumentException::class);
 
     $api = new BestcompanyApi([
-      'hostname' => $this->hostname
+      'hostname' => $this->hostname,
+      'version' => 'v1'
     ]);
 
     $response = $api->repAccessRequest()->all();
@@ -26,7 +27,8 @@ class RepAccessRequestTest extends BaseTestCase
 
     $api = new BestcompanyApi([
       'key' => 'asdfasdf',
-      'hostname' => $this->hostname
+      'hostname' => $this->hostname,
+      'version' => 'v1'
     ]);
 
     $response = $api->repAccessRequest()->all();
@@ -37,7 +39,8 @@ class RepAccessRequestTest extends BaseTestCase
   {
     $api = new BestcompanyApi([
       'key' => $this->key,
-      'hostname' => $this->hostname
+      'hostname' => $this->hostname,
+      'version' => 'v1'
     ]);
 
     $data = $api->repAccessRequest()->all();
@@ -48,7 +51,8 @@ class RepAccessRequestTest extends BaseTestCase
   {
     $api = new BestcompanyApi([
       'key' => $this->key,
-      'hostname' => $this->hostname
+      'hostname' => $this->hostname,
+      'version' => 'v1'
     ]);
 
     $data = $api->repAccessRequest()->getById(1);
@@ -66,7 +70,8 @@ class RepAccessRequestTest extends BaseTestCase
   {
       $api = new BestcompanyApi([
         'key' => $this->key,
-        'hostname' => $this->hostname
+        'hostname' => $this->hostname,
+        'version' => 'v1'
       ]);
 
       $data = $api->repAccessRequest()->update(1, [
@@ -85,7 +90,8 @@ class RepAccessRequestTest extends BaseTestCase
   {
       $api = new BestcompanyApi([
         'key' => $this->key,
-        'hostname' => $this->hostname
+        'hostname' => $this->hostname,
+        'version' => 'v1'
       ]);
 
       $formData = [
