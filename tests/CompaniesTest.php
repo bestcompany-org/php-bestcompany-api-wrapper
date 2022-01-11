@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Tests\V1;
+namespace Bestcompany\BestcompanyApi\Tests;
 
 use InvalidArgumentException;
 use GuzzleHttp\Exception\ClientException;
@@ -14,8 +14,7 @@ class CompaniesTest extends BaseTestCase
       $this->expectException(InvalidArgumentException::class);
 
       $api = new BestcompanyApi([
-        'hostname' => $this->hostname,
-        'version' => 'v1'
+        'hostname' => $this->hostname
       ]);
 
       $response = $api->companies()->all();
@@ -27,8 +26,7 @@ class CompaniesTest extends BaseTestCase
 
       $api = new BestcompanyApi([
         'key' => 'asdfasdf',
-        'hostname' => $this->hostname,
-        'version' => 'v1'
+        'hostname' => $this->hostname
       ]);
 
       $response = $api->companies()->all();
@@ -39,8 +37,7 @@ class CompaniesTest extends BaseTestCase
     {
       $api = new BestcompanyApi([
         'key' => $this->key,
-        'hostname' => $this->hostname,
-        'version' => 'v1'
+        'hostname' => $this->hostname
       ]);
 
       $data = $api->companies()->all();
@@ -51,8 +48,7 @@ class CompaniesTest extends BaseTestCase
     {
       $api = new BestcompanyApi([
         'key' => $this->key,
-        'hostname' => $this->hostname,
-        'version' => 'v1'
+        'hostname' => $this->hostname
       ]);
 
       $data = $api->companies()->getById(1);
@@ -73,8 +69,7 @@ class CompaniesTest extends BaseTestCase
     {
         $api = new BestcompanyApi([
           'key' => $this->key,
-          'hostname' => $this->hostname,
-          'version' => 'v1'
+          'hostname' => $this->hostname
         ]);
 
         $data = $api->companies()->recommendations([
