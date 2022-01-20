@@ -22,6 +22,26 @@ class CompanyReviewLists extends Resource
       http_build_query($params)
     );
   }
+
+    /**
+     * Get a CompanyReviewLists.
+     *
+     * @param int $id
+     *
+     * @return Object
+     */
+    public function getById($id, $params = []): Object
+    {
+        $path = 'company-review-lists/' . $id;
+
+        return $this->client->request(
+            'get',
+            $path,
+            [],
+            http_build_query($params)
+        );
+    }
+
   /**
    * Create a business user favorite review.
    *

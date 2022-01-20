@@ -1,6 +1,8 @@
 # Directories
 /.idea
 /vendor
+.vscode
+.phpunit.cache
 # Files
 .env
 composer.phar
