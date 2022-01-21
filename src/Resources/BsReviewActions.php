@@ -4,7 +4,7 @@ namespace Bestcompany\BestcompanyApi\Resources;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class BsReviewAction extends Resource
+class BsReviewActions extends Resource
 {
     /**
      * Create a access request.
