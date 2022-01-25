@@ -23,4 +23,23 @@ class BsReviewActions extends Resource
         ['json' => $params],
       );
     }
+
+    /**
+     * Get an Action.
+     *
+     * @param int $id
+     *
+     * @return Object
+     */
+    public function getById($id, $params = []): Object
+    {
+      $path = 'bs-review-actions/' . $id;
+
+      return $this->client->request(
+        'get',
+        $path,
+        [],
+        http_build_query($params)
+      );
+    }
 }
