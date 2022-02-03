@@ -53,12 +53,12 @@ class BestcompanyApiServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/bcapi.php', 'bestcompany-api');
 
         // Register the main class to use with the facade
-        $this->app->singleton('bestcompany-api', function () {
-            return BestcompanyApi::create([
-              'key' => env('BC_API_KEY', config('bestcompany-api.api_key')),
-              'hostname' => env('BC_HOSTNAME', config('bestcompany-api.hostname')),
-              'version' => env('BC_API_VERSION', config('bestcompany-api.version')),
-            ]);
+        $this->app->singleton(BestcompanyApi::class, function () {
+          return BestcompanyApi::create([
+            'key' => env('BC_API_KEY', config('bestcompany-api.api_key')),
+            'hostname' => env('BC_HOSTNAME', config('bestcompany-api.hostname')),
+            'version' => env('BC_API_VERSION', config('bestcompany-api.version')),
+          ]);
         });
     }
 }
