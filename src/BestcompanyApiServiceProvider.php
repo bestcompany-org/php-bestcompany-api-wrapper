@@ -55,9 +55,9 @@ class BestcompanyApiServiceProvider extends ServiceProvider
         // Register the main class to use with the facade
         $this->app->singleton('bestcompany-api', function () {
             return BestcompanyApi::create([
-              'key' => env('BC_API_KEY', config('bcapi.api_key')),
-              'hostname' => env('BC_HOSTNAME', config('bcapi.hostname')),
-              'version' => env('BC_API_VERSION', config('bcapi.version')),
+              'key' => env('BC_API_KEY', config('bestcompany-api.api_key')),
+              'hostname' => env('BC_HOSTNAME', config('bestcompany-api.hostname')),
+              'version' => env('BC_API_VERSION', config('bestcompany-api.version')),
             ]);
         });
     }
