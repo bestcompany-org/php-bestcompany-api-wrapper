@@ -13,7 +13,7 @@ class Cache extends Resource
    *   *
    * @return Object
    */
-  public function flushByTag(array $tags = []): Object
+  public function flushByTags(array $tags = []): Object
   {
     $path = 'bs-user-notifications';
 
