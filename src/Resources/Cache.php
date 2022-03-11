@@ -15,7 +15,7 @@ class Cache extends Resource
    */
   public function flushByTags(array $tags = []): Object
   {
-    $path = 'bs-user-notifications';
+    $path = 'cache-flush';
 
     return $this->client->request(
       'post',
