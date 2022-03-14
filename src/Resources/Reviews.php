@@ -41,4 +41,22 @@ class Reviews extends Resource
         http_build_query($params)
       );
     }
+
+    /**
+     * Create a Review only for testing purposes.
+     *
+     * @param int $id
+     *
+     * @return Object
+     */
+    public function create(array $params = []): Object
+    {
+      $path = 'reviews';
+
+      return $this->client->request(
+        'post',
+        $path,
+        ['json' => $params],
+      );
+    }
 }
