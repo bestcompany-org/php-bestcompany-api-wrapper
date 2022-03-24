@@ -1,0 +1,46 @@
+<?php
+
+namespace Bestcompany\BestcompanyApi\Resources;
+
+use Bestcompany\BestcompanyApi\Resources\Resource;
+
+class BsFeatureAdoption extends Resource
+{
+   /**
+   * Updates an access request.
+   *
+   * @param int   $id         the access request id
+   * @param array $params the access request properties to update
+   *
+   * @return Object
+   */
+  public function update($id, $params = []): Object
+  {
+    $path = 'bs-feature-adoptions/' . $id;
+
+    return $this->client->request(
+      'put',
+      $path,
+      ['json' => $params],
+    );
+  }
+
+  /**
+   * Create a access request.
+   *
+   * @param array $params array of access request properties
+   *   *
+   * @return Object
+   */
+  public function create(array $params = []): Object
+  {
+    $path = 'bs-feature-adoptions';
+
+    return $this->client->request(
+      'post',
+      $path,
+      ['json' => $params],
+    );
+  }
+
+}
