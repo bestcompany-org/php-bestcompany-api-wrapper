@@ -43,4 +43,23 @@ class BsFeatureAdoption extends Resource
     );
   }
 
+  /**
+   * Get a FeatureAdoption by company id.
+   *
+   * @param int $id
+   *
+   * @return Object
+   */
+  public function getByCompanyId($id, $params = [])
+  {
+    $path = 'bs-feature-adoptions/company/' . $id;
+
+    return $this->client->request(
+      'get',
+      $path,
+      [],
+      http_build_query($params)
+    );
+  }
+
 }
