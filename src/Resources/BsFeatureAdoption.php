@@ -61,5 +61,4 @@ class BsFeatureAdoption extends Resource
       http_build_query($params)
     );
   }
-
 }
