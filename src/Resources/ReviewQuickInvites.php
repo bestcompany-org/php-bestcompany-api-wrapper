@@ -41,4 +41,22 @@ class ReviewQuickInvites extends Resource
             http_build_query($params)
         );
     }
+
+    /**
+     * Create a access request.
+     *
+     * @param array $params array of access request properties
+     *   *
+     * @return Object
+     */
+    public function create(array $params = []): Object
+    {
+        $path = 'review-quick-invites';
+
+        return $this->client->request(
+            'post',
+            $path,
+            ['json' => $params],
+        );
+    }
 }
