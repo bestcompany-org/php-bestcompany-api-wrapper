@@ -45,13 +45,32 @@ class FieldReps extends Resource
   /**
    * Get an access request.
    *
-   * @param int $id
+   * @param string $id
    *
    * @return Object
    */
   public function getByUUID($id, $params = []): Object
   {
     $path = 'field-reps/'.$id.'/uuid';
+
+    return $this->client->request(
+      'get',
+      $path,
+      [],
+      http_build_query($params)
+    );
+  }
+
+  /**
+   * Get an access request.
+   *
+   * @param string $slug
+   *
+   * @return Object
+   */
+  public function getBySlug($slug, $params = []): Object
+  {
+    $path = 'field-reps/'.$slug.'/slug';
 
     return $this->client->request(
       'get',
