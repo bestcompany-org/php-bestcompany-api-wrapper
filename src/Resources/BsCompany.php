@@ -24,4 +24,23 @@ class BsCompany extends Resource
       http_build_query($params)
     );
   }
+
+  /**
+   * Get a BSCompany from a BCCompanyId.
+   *
+   * @param int $id
+   *
+   * @return Object
+   */
+  public function getByBcCompanyId($id, $params = []): Object
+  {
+    $path = 'bs-companies/' . $id . 'bcid';
+
+    return $this->client->request(
+      'get',
+      $path,
+      [],
+      http_build_query($params)
+    );
+  }
 }
