@@ -34,7 +34,7 @@ class BsCompany extends Resource
    */
   public function getByBcCompanyId($id, $params = []): Object
   {
-    $path = 'bs-companies/' . $id . 'bcid';
+    $path = 'bs-companies/' . $id . '/bcid';
 
     return $this->client->request(
       'get',
