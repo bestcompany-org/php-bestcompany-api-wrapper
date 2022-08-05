@@ -1,5 +1,4 @@
 <?php
-
 namespace Bestcompany\BestcompanyApi\Resources;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
