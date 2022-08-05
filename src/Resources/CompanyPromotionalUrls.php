@@ -79,4 +79,22 @@ class CompanyPromotionalUrls extends Resource
       ['json' => $params],
     );
   }
+
+  /**
+   * delete CompanyPromotionalURL.
+   *
+   * @param int $id
+   *
+   * @return Object
+   */
+  public function delete($id, $params = []): Object
+  {
+    $path = 'company-promotional-urls/' . $id;
+
+    return $this->client->request(
+      'delete',
+      $path,
+      ['json' => $params],
+    );
+  }
 }
