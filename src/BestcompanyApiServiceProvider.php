@@ -3,6 +3,7 @@
 namespace Bestcompany\BestcompanyApi;
 
 use Illuminate\Support\ServiceProvider;
+use Bestcompany\BestcompanyApi\Facades\BCApi;
 
 class BestcompanyApiServiceProvider extends ServiceProvider
 {
@@ -51,6 +52,10 @@ class BestcompanyApiServiceProvider extends ServiceProvider
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/bcapi.php', 'bestcompany-api');
+
+        $this->app->bind('bc-api', function ($app) {
+          return new BCApi();
+        });
 
         // Register the main class to use with the facade
         $this->app->singleton(BestcompanyApi::class, function () {
