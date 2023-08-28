@@ -68,7 +68,12 @@ class BestcompanyApi
       if ($signature === $generatedSignature) {
         $payload['lol'] = 'rofl';
         try {
-          return new WebhookEvent($payload['key'], $payload['event'], $payload['data'], $payload['created']);
+            return new WebhookEvent(
+                $payload['key'] ?? null,
+                $payload['event'] ?? null,
+                $payload['data'] ?? null,
+                $payload['created'] ?? null
+            );
         } catch (\Throwable $e) {
           throw new \UnexpectedValueException('Payload Invalid', 422);
         }

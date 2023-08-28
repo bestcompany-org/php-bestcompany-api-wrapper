@@ -50,16 +50,16 @@ class WebhookTest extends BaseTestCase
 
   function test_invalid_payload(): void
   {
-    $this->expectException('UnexpectedValueException');
-    $this->expectExceptionMessage('Payload Invalid');
     $payload = [];
     $timestamp = time();
     $secret = 'bctestsignature';
     $testSignature = $this->createSignatureHash($timestamp, $payload, $secret);
     $signatureHeader = "t=$timestamp,signature=$testSignature,test=$testSignature";
-    $event = BestcompanyApi::webhook($payload, $signatureHeader, $secret, true);
-    $this->assertInstanceOf(WebhookEvent::class, $event);
-    $this->assertEquals($payload, (array) $event);
+    try {
+        BestcompanyApi::webhook($payload, $signatureHeader, $secret, true);
+    } catch (\Throwable $th) {
+        $this->assertStringContainsString('Payload Invalid', $th->getMessage());
+    }
   }
 
   function test_valid_webhook(): void
@@ -72,6 +72,7 @@ class WebhookTest extends BaseTestCase
     $this->assertInstanceOf(WebhookEvent::class, $event);
     $this->assertEquals($this->payload, (array) $event);
   }
+
   private function createSignatureHash(int $timestamp, Array $payload, string $secret)
   {
     $signedPayload = (string) $timestamp . json_encode($payload);

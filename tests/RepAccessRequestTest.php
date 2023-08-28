@@ -4,11 +4,14 @@ namespace Bestcompany\BestcompanyApi\Tests;
 
 use InvalidArgumentException;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Foundation\Testing\WithFaker;
 use Bestcompany\BestcompanyApi\BestcompanyApi;
 use Bestcompany\BestcompanyApi\Tests\BaseTestCase;
 
 class RepAccessRequestTest extends BaseTestCase
 {
+  use WithFaker;
+
   function test_it_requires_api_key(): void
   {
     $this->expectException(InvalidArgumentException::class);
@@ -41,7 +44,7 @@ class RepAccessRequestTest extends BaseTestCase
     ]);
 
     $data = $api->repAccessRequest()->all();
-    $this->assertObjectHasAttribute('current_page', $data);
+    $this->assertNotNull($data->current_page);
   }
 
   function test_single_access_request(): void
@@ -52,14 +55,15 @@ class RepAccessRequestTest extends BaseTestCase
     ]);
 
     $data = $api->repAccessRequest()->getById(1);
-    $this->assertObjectHasAttribute('id', $data);
-    $this->assertObjectHasAttribute('name', $data);
-    $this->assertObjectHasAttribute('email', $data);
-    $this->assertObjectHasAttribute('avatar', $data);
-    $this->assertObjectHasAttribute('company_id', $data);
-    $this->assertObjectHasAttribute('approved', $data);
-    $this->assertObjectHasAttribute('created_at', $data);
-    $this->assertObjectHasAttribute('updated_at', $data);
+
+    $this->assertNotNull($data->id);
+    $this->assertNotNull($data->name);
+    $this->assertNotNull($data->email);
+    $this->assertNotNull($data->avatar);
+    $this->assertNotNull($data->company_id);
+    $this->assertNotNull($data->is_approved);
+    $this->assertNotNull($data->created_at);
+    $this->assertNotNull($data->updated_at);
   }
 
   function test_updating_access_request(): void
@@ -70,15 +74,15 @@ class RepAccessRequestTest extends BaseTestCase
       ]);
 
       $data = $api->repAccessRequest()->update(1, [
-        'approved' => 1
+        'is_approved' => 1
       ]);
       $this->assertEquals($data->id, 1);
-      $this->assertEquals($data->approved, 1);
+      $this->assertEquals($data->is_approved, 1);
       $data = $api->repAccessRequest()->update(1, [
-        'approved' => 0
+        'is_approved' => 0
       ]);
       $this->assertEquals($data->id, 1);
-      $this->assertEquals($data->approved, 0);
+      $this->assertEquals($data->is_approved, 0);
   }
 
   function test_creating_access_request(): void
@@ -92,17 +96,18 @@ class RepAccessRequestTest extends BaseTestCase
         'name' => 'test name',
         'email' => 'technology@bestcompany.com',
         'avatar' => 'https://via.placeholder.com/400',
-        'company_id' => 471,
-        'approved' => 0
+        'company_id' => 691,
+        'is_approved' => 0,
+        'field_rep_id' => 'zzwBKhRbbVQjk5xjZMAw7ZsR7t52'
       ];
 
       $data = $api->repAccessRequest()->create($formData);
 
-      $this->assertObjectHasAttribute('id', $data);
+      $this->assertNotNull($data->id);
       $this->assertEquals($data->name, $formData['name']);
       $this->assertEquals($data->email, $formData['email']);
       $this->assertEquals($data->avatar, $formData['avatar']);
       $this->assertEquals($data->company_id, $formData['company_id']);
-      $this->assertEquals($data->approved, $formData['approved']);
+      $this->assertEquals($data->is_approved, $formData['is_approved']);
   }
 }

@@ -3,7 +3,7 @@
 namespace Bestcompany\BestcompanyApi\Tests;
 
 use Dotenv\Dotenv;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -21,5 +21,4 @@ abstract class BaseTestCase extends TestCase
       $this->key = $_ENV['BC_API_KEY'];
       $this->hostname = $_ENV['BC_HOSTNAME'];
     }
-
 }

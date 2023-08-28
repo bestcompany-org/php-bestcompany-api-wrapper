@@ -44,7 +44,7 @@ class VerticalsTest extends BaseTestCase
     ]);
 
     $data = $api->verticals()->all();
-    $this->assertObjectHasAttribute('meta', $data);
+    $this->assertObjectHasProperty('meta', $data);
   }
 
   function test_single_vertical(): void
@@ -57,8 +57,8 @@ class VerticalsTest extends BaseTestCase
 
     $data = $api->verticals()->getById(1);
     $data = $data->data;
-    $this->assertObjectHasAttribute('title', $data);
-    $this->assertObjectHasAttribute('slug', $data);
-    $this->assertObjectHasAttribute('maturity', $data);
+    $this->assertObjectHasProperty('title', $data);
+    $this->assertObjectHasProperty('slug', $data);
+    $this->assertObjectHasProperty('maturity', $data);
   }
 }

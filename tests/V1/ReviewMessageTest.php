@@ -73,7 +73,7 @@ class ReviewMessageTest extends BaseTestCase
 
     $data = $api->reviewMessage()->create($formData);
 
-    $this->assertObjectHasAttribute('id', $data);
+    $this->assertObjectHasProperty('id', $data);
     $this->assertEquals($data->review_id, $formData['review_id']);
     $this->assertEquals($data->messenger_type, $formData['messenger_type']);
     $this->assertEquals($data->message, $formData['message']);

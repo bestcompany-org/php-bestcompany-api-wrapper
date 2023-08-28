@@ -7,13 +7,13 @@ use Bestcompany\BestcompanyApi\Resources\Resource;
 class CompanyReviewLists extends Resource
 {
   /**
-   * Get all company-review-lists.
+   * Get all company-campaigns.
    *
    * @return Object
    */
   public function all(array $params = []): Object
   {
-    $path = 'company-review-lists';
+    $path = 'company-campaigns';
 
     return $this->client->request(
       'get',
@@ -32,7 +32,7 @@ class CompanyReviewLists extends Resource
      */
     public function getById($id, $params = []): Object
     {
-        $path = 'company-review-lists/' . $id;
+        $path = 'company-campaigns/' . $id;
 
         return $this->client->request(
             'get',
@@ -51,7 +51,7 @@ class CompanyReviewLists extends Resource
    */
   public function create(array $params = []): Object
   {
-    $path = 'company-review-lists';
+    $path = 'company-campaigns';
 
     return $this->client->request(
       'post',
@@ -68,7 +68,7 @@ class CompanyReviewLists extends Resource
    */
   public function delete($id): Object
   {
-    $path = 'company-review-lists/' . $id;
+    $path = 'company-campaigns/' . $id;
 
     return $this->client->request(
       'delete',

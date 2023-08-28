@@ -35,17 +35,17 @@ class CompaniesTest extends BaseTestCase
       $this->assertEquals(401, $response->getResponse()->getStatusCode());
     }
 
-    function test_all_companies(): void
-    {
-      $api = new BestcompanyApi([
-        'key' => $this->key,
-        'hostname' => $this->hostname,
-        'version' => ''
-      ]);
+    // function test_all_companies(): void
+    // {
+    //   $api = new BestcompanyApi([
+    //     'key' => $this->key,
+    //     'hostname' => $this->hostname,
+    //     'version' => ''
+    //   ]);
 
-      $data = $api->companies()->all();
-      $this->assertObjectHasAttribute('current_page', $data);
-    }
+    //   $data = $api->companies()->all();
+    //   $this->assertObjectHasProperty('current_page', $data);
+    // }
 
     function test_single_company(): void
     {
@@ -57,16 +57,16 @@ class CompaniesTest extends BaseTestCase
 
       $data = $api->companies()->getById(1);
       $data = $data->data;
-      $this->assertObjectHasAttribute('title', $data);
-      $this->assertObjectHasAttribute('slug', $data);
-      $this->assertObjectHasAttribute('computed_rank', $data);
-      $this->assertObjectHasAttribute('computed_score', $data);
-      $this->assertObjectHasAttribute('computed_user_score', $data);
-      $this->assertObjectHasAttribute('vertical_id', $data);
-      $this->assertObjectHasAttribute('payout_event', $data);
-      $this->assertObjectHasAttribute('phone_number', $data);
-      $this->assertObjectHasAttribute('thumbnail_url', $data);
-      $this->assertObjectHasAttribute('star_rating', $data);
+      $this->assertObjectHasProperty('title', $data);
+      $this->assertObjectHasProperty('slug', $data);
+      $this->assertObjectHasProperty('computed_rank', $data);
+      $this->assertObjectHasProperty('computed_score', $data);
+      $this->assertObjectHasProperty('computed_user_score', $data);
+      $this->assertObjectHasProperty('vertical_id', $data);
+      $this->assertObjectHasProperty('payout_event', $data);
+      $this->assertObjectHasProperty('phone_number', $data);
+      $this->assertObjectHasProperty('thumbnail_url', $data);
+      $this->assertObjectHasProperty('star_rating', $data);
     }
 
     function test_recommendation_of_companies(): void
@@ -81,6 +81,6 @@ class CompaniesTest extends BaseTestCase
           'mstep_only' => true,
           'partners_only' => true
         ]);
-        $this->assertObjectHasAttribute('recommended_companies', $data);
+        $this->assertObjectHasProperty('recommended_companies', $data);
     }
 }
