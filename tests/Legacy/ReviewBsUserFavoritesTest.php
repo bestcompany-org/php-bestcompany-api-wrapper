@@ -50,7 +50,7 @@ class ReviewBsUserFavoritesTest extends BaseTestCase
 
   //     $data = $api->reviewBsUserFavorites()->create($formData);
 
-  //     $this->assertObjectHasAttribute('id', $data);
+  //     $this->assertObjectHasProperty('id', $data);
   //     $this->assertEquals($data->review_id, $formData['review_id']);
   //     $this->assertEquals($data->user_id, $formData['user_id']);
   // }

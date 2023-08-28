@@ -44,6 +44,6 @@ class FactSheetsTest extends BaseTestCase
     ]);
 
     $data = $api->factSheets()->all();
-    $this->assertObjectHasAttribute('meta', $data);
+    $this->assertObjectHasProperty('meta', $data);
   }
 }

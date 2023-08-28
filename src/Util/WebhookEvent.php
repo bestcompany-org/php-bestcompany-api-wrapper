@@ -56,7 +56,7 @@ class WebhookEvent implements JsonSerializable
    *
    * @return array
    */
-  public function jsonSerialize()
+  public function jsonSerialize(): array
   {
     return [
       'key' => $this->key,

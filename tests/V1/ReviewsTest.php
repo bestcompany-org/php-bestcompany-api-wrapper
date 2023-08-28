@@ -44,8 +44,8 @@ class ReviewsTest extends BaseTestCase
         ]);
 
         $data = $api->reviews()->all();
-        $this->assertObjectHasAttribute('data', $data);
-        $this->assertObjectHasAttribute('meta', $data);
+        $this->assertObjectHasProperty('data', $data);
+        $this->assertObjectHasProperty('meta', $data);
     }
 
     function test_single_review(): void
@@ -57,8 +57,8 @@ class ReviewsTest extends BaseTestCase
         ]);
 
         $data = $api->reviews()->getById(1);
-        $this->assertObjectHasAttribute('id', $data);
-        $this->assertObjectHasAttribute('live_version', $data);
-        $this->assertObjectHasAttribute('reviewer', $data);
+        $this->assertObjectHasProperty('id', $data);
+        $this->assertObjectHasProperty('live_version', $data);
+        $this->assertObjectHasProperty('reviewer', $data);
     }
 }

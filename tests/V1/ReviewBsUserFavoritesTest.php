@@ -34,24 +34,4 @@ class ReviewBsUserFavoritesTest extends BaseTestCase
     $response = $api->reviewBsUserFavorites()->create();
     $this->assertEquals(401, $response->getResponse()->getStatusCode());
   }
-
-  // function test_it_creates_a_favorite(): void
-  // {
-  //     $api = new BestcompanyApi([
-  //       'key' => $this->key,
-  //       'hostname' => $this->hostname,
-  //       'version' => 'v1'
-  //     ]);
-
-  //     $formData = [
-  //       'review_id' => 3,
-  //       'user_id' => 1
-  //     ];
-
-  //     $data = $api->reviewBsUserFavorites()->create($formData);
-
-  //     $this->assertObjectHasAttribute('id', $data);
-  //     $this->assertEquals($data->review_id, $formData['review_id']);
-  //     $this->assertEquals($data->user_id, $formData['user_id']);
-  // }
 }

@@ -44,7 +44,7 @@ class CompanyReviewListsTest extends BaseTestCase
     ]);
 
     $data = $api->companyReviewLists()->all();
-    $this->assertObjectHasAttribute('data', $data);
-    $this->assertObjectHasAttribute('meta', $data);
+    $this->assertObjectHasProperty('data', $data);
+    $this->assertObjectHasProperty('meta', $data);
   }
 }
