@@ -29,7 +29,7 @@ $api = new BestcompanyApi;
 $api->reviews()->all();
 ```
 
-If you discover any security related issues, please email cpope@bestcompany.com instead of using the issue tracker.
+If you discover any security related issues, please email technology@bestcompany.com instead of using the issue tracker.
 
 ## Credits
 
