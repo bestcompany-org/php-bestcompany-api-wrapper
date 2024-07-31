@@ -18,10 +18,10 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.7",
-        "illuminate/support": "^10.20.0"
+        "illuminate/support": "^11.0.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.9",
+        "orchestra/testbench": "^9.2",
         "phpunit/phpunit": "^10.3",
         "vlucas/phpdotenv": "^5.5"
     },
