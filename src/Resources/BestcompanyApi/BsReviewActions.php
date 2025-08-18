@@ -1,13 +1,13 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Resources;
+namespace Bestcompany\BestcompanyApi\Resources\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class ReviewBsUserFavorites extends Resource
+class BsReviewActions extends Resource
 {
     /**
-     * Create a business user favorite review.
+     * Create a access request.
      *
      * @param array $params array of access request properties
      *   *
@@ -15,7 +15,7 @@ class ReviewBsUserFavorites extends Resource
      */
     public function create(array $params = []): Object
     {
-      $path = 'review-bsuser-favorites';
+      $path = 'bs-review-actions';
 
       return $this->client->request(
         'post',
@@ -23,20 +23,23 @@ class ReviewBsUserFavorites extends Resource
         ['json' => $params],
       );
     }
+
     /**
-     * Delete a business user favorite review.
+     * Get an Action.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Object
      */
-    public function delete($id): Object
+    public function getById($id, $params = []): Object
     {
-      $path = 'review-bsuser-favorites/'.$id;
+      $path = 'bs-review-actions/' . $id;
 
       return $this->client->request(
-        'delete',
-        $path
+        'get',
+        $path,
+        [],
+        http_build_query($params)
       );
     }
 }

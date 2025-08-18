@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Resources;
+namespace Bestcompany\BestcompanyApi\Resources\SnoballApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
@@ -15,7 +15,7 @@ class SalesRepReferral extends Resource
    */
   public function create(array $params = []): Object
   {
-    $path = 'sales-rep-referrals';
+    $path = 'sales-rep-referral';
 
     return $this->client->request(
       'post',

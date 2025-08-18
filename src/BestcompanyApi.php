@@ -30,13 +30,57 @@ class BestcompanyApi
 
     /**
      * Return an instance of a Resource based on the method called.
+     * Automatically discovers resources from the BestcompanyApi resources directory.
      *
      * @param mixed $args
      */
     public function __call(string $name, $args): Resource
     {
-      $resource = 'Bestcompany\\BestcompanyApi\\Resources\\' . ucfirst($name);
-      return new $resource($this->client, ...$args);
+      $resourceClass = 'Bestcompany\\BestcompanyApi\\Resources\\BestcompanyApi\\' . ucfirst($name);
+
+      if (!class_exists($resourceClass)) {
+        // Get available resources for a helpful error message
+        $availableResources = $this->getAvailableResources();
+        throw new \BadMethodCallException(
+          "Resource '{$name}' is not available in BestcompanyApi. Available resources: " .
+          implode(', ', $availableResources)
+        );
+      }
+
+      return new $resourceClass($this->client, ...$args);
+    }
+
+    /**
+     * Get list of available resources by scanning the BestcompanyApi resources directory.
+     *
+     * @return array
+     */
+    protected function getAvailableResources(): array
+    {
+      $resourcesPath = __DIR__ . '/Resources/BestcompanyApi';
+      $resources = [];
+
+      if (is_dir($resourcesPath)) {
+        $files = scandir($resourcesPath);
+        foreach ($files as $file) {
+          if ($file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
+            $resourceName = lcfirst(pathinfo($file, PATHINFO_FILENAME));
+            $resources[] = $resourceName;
+          }
+        }
+      }
+
+      return $resources;
+    }
+
+    /**
+     * Get the underlying HTTP client
+     *
+     * @return Client
+     */
+    public function getClient(): Client
+    {
+        return $this->client;
     }
 
     /**

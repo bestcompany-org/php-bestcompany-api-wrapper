@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Resources;
+namespace Bestcompany\BestcompanyApi\Resources\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 

@@ -5,7 +5,7 @@ namespace Bestcompany\BestcompanyApi;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Bestcompany\BestcompanyApi\Skeleton\SkeletonClass
+ * @see \Bestcompany\BestcompanyApi\BestcompanyApi
  */
 class BestcompanyApiFacade extends Facade
 {
@@ -16,6 +16,6 @@ class BestcompanyApiFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'bestcompany-api';
+        return BestcompanyApi::class;
     }
 }

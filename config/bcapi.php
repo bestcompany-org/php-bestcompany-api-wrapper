@@ -19,7 +19,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-  'hostname' => env('BC_HOSTNAME', 'https://api2.bestcompany.com/api'),
+  'hostname' => env('BC_HOSTNAME', 'https://api.bestcompany.com/api'),
 
   'version' => env('BC_API_VERSION', 'v1')
 

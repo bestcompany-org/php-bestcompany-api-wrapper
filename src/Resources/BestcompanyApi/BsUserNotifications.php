@@ -1,28 +1,11 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Resources;
+namespace Bestcompany\BestcompanyApi\Resources\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class RepAccessRequest extends Resource
+class BsUserNotifications extends Resource
 {
-  /**
-   * Get all RepAccessRequests.
-   *
-   * @return Object
-   */
-  public function all(array $params = []): Object
-  {
-    $path = 'referral-payouts';
-
-    return $this->client->request(
-      'get',
-      $path,
-      [],
-      http_build_query($params)
-    );
-  }
-
   /**
    * Get an access request.
    *
@@ -32,7 +15,7 @@ class RepAccessRequest extends Resource
    */
   public function getById($id, $params = []): Object
   {
-    $path = 'referral-payouts/' . $id;
+    $path = 'bs-user-notifications/' . $id;
 
     return $this->client->request(
       'get',
@@ -51,7 +34,7 @@ class RepAccessRequest extends Resource
    */
   public function update($id, $params = []): Object
   {
-    $path = 'referral-payouts/' . $id;
+    $path = 'bs-user-notifications/' . $id;
 
     return $this->client->request(
       'put',
@@ -69,7 +52,7 @@ class RepAccessRequest extends Resource
    */
   public function create(array $params = []): Object
   {
-    $path = 'referral-payouts';
+    $path = 'bs-user-notifications';
 
     return $this->client->request(
       'post',
