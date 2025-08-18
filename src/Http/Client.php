@@ -22,13 +22,13 @@ class Client
     /** @var \GuzzleHttp\Client */
     public $client;
 
-    public function __construct($config = [], $client = null, $clientOptions = [], $wrapResponse = true)
+    public function __construct($config = [], $client = null, private $clientOptions = [], private $wrapResponse = true)
     {
-      $this->clientOptions = $clientOptions;
-      $this->wrapResponse = $wrapResponse;
-      $this->key = $this->safelyGetConfig('key', 'BC_API_KEY', null, $config);
-      $this->hostname = $this->safelyGetConfig('hostname', 'BC_HOSTNAME', 'https://api2.bestcompany.com/api', $config);
-      $this->version = $this->safelyGetConfig('version', 'BC_API_VERSION', 'v1', $config);
+      // Require explicit configuration - no env fallbacks
+      $this->key = $config['key'] ?? null;
+      $this->hostname = $config['hostname'] ?? null;
+      $this->version = $config['version'] ?? null;
+
       if (is_null($client)) {
         $client = new GuzzleClient();
       }
@@ -39,7 +39,7 @@ class Client
      * Send the request...
      *
      * @param string $method        The HTTP request verb
-     * @param string $path      The BC API path
+     * @param string $path          The BC API path
      * @param array  $options       An array of options to send with the request
      * @param string $query_string  A query string to send with the request
      *
@@ -48,7 +48,7 @@ class Client
     public function request($method, $path, array $options = [], $query_string = null)
     {
       if (empty($this->key)) {
-        throw new InvalidArgumentException('You must provide a BC api key.');
+        throw new InvalidArgumentException('You must provide an API key.');
       }
 
       $url = $this->generateUrl($path, $query_string);
@@ -80,15 +80,6 @@ class Client
       $query_string .= $this->addQuery($query_string, http_build_query($query_params));
 
       return $url . $query_string;
-    }
-
-    protected function safelyGetConfig(String $configKey, String $envKey, Mixed $default, array $config = [])
-    {
-        $value = isset($config[$configKey]) ? $config[$configKey] : getenv($envKey);
-        if ($value === null || $value === false) {
-          return $default;
-        }
-        return $value;
     }
 
     /**

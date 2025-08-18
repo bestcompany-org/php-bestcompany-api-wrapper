@@ -1,19 +1,21 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Resources;
+namespace Bestcompany\BestcompanyApi\Resources\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class Verticals extends Resource
+class BsCompany extends Resource
 {
   /**
-   * Get all verticals.
+   * Get a Company.
+   *
+   * @param int $id
    *
    * @return Object
    */
-  public function all(array $params = []): Object
+  public function getById($id, $params = []): Object
   {
-    $path = 'verticals';
+    $path = 'bs-companies/' . $id;
 
     return $this->client->request(
       'get',
@@ -24,15 +26,15 @@ class Verticals extends Resource
   }
 
   /**
-   * Get a Vertical.
+   * Get a BSCompany from a BCCompanyId.
    *
    * @param int $id
    *
    * @return Object
    */
-  public function getById($id, $params = []): Object
+  public function getByBcCompanyId($id, $params = []): Object
   {
-    $path = 'verticals/' . $id;
+    $path = 'bs-companies/' . $id . '/bcid';
 
     return $this->client->request(
       'get',

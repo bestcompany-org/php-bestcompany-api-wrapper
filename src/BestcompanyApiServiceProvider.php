@@ -14,33 +14,14 @@ class BestcompanyApiServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'bestcompany-api');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'bestcompany-api');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
-
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/bcapi.php' => config_path('bestcompany-api.php'),
-            ]);
+            ], 'config');
 
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/bestcompany-api'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/bestcompany-api'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/bestcompany-api'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+            $this->publishes([
+                __DIR__.'/../config/snoball.php' => config_path('snoball.php'),
+            ], 'config');
         }
     }
 
@@ -51,14 +32,24 @@ class BestcompanyApiServiceProvider extends ServiceProvider
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/bcapi.php', 'bestcompany-api');
+        $this->mergeConfigFrom(__DIR__.'/../config/snoball.php', 'snoball');
 
-        // Register the main class to use with the facade
+        // Register the main Bestcompany API client
         $this->app->singleton(BestcompanyApi::class, function () {
-          return BestcompanyApi::create([
-            'key' => env('BC_API_KEY', config('bestcompany-api.api_key')),
-            'hostname' => env('BC_HOSTNAME', config('bestcompany-api.hostname')),
-            'version' => env('BC_API_VERSION', config('bestcompany-api.version')),
-          ]);
+            return BestcompanyApi::create([
+                'key' => config('bestcompany-api.api_key'),
+                'hostname' => config('bestcompany-api.hostname'),
+                'version' => config('bestcompany-api.version'),
+            ]);
+        });
+
+        // Register the Snoball API client for referral requests
+        $this->app->singleton(SnoballApi::class, function () {
+            return SnoballApi::create([
+                'key' => config('snoball.api_key'),
+                'hostname' => config('snoball.hostname'),
+                'version' => config('snoball.version'),
+            ]);
         });
     }
 }

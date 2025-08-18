@@ -1,19 +1,19 @@
 <?php
 
-namespace Bestcompany\BestcompanyApi\Resources;
+namespace Bestcompany\BestcompanyApi\Resources\BestcompanyApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class RepAccessRequest extends Resource
+class ReviewMessage extends Resource
 {
   /**
-   * Get all RepAccessRequests.
+   * Get all ReviewMessage.
    *
    * @return Object
    */
   public function all(array $params = []): Object
   {
-    $path = 'rep-access-request';
+    $path = 'review-messages';
 
     return $this->client->request(
       'get',
@@ -32,7 +32,7 @@ class RepAccessRequest extends Resource
    */
   public function getById($id, $params = []): Object
   {
-    $path = 'rep-access-request/' . $id;
+    $path = 'review-messages/' . $id;
 
     return $this->client->request(
       'get',
@@ -49,16 +49,16 @@ class RepAccessRequest extends Resource
    *
    * @return Object
    */
-    public function update($id, $params = []): Object
-    {
-      $path = 'rep-access-request/'.$id;
+  public function update($id, $params = []): Object
+  {
+    $path = 'review-messages/' . $id;
 
-      return $this->client->request(
-        'put',
-        $path,
-        ['json' => $params],
-      );
-    }
+    return $this->client->request(
+      'put',
+      $path,
+      ['json' => $params],
+    );
+  }
 
   /**
    * Create a access request.
@@ -67,14 +67,14 @@ class RepAccessRequest extends Resource
    *   *
    * @return Object
    */
-    public function create(array $params = []): Object
-    {
-      $path = 'rep-access-request';
+  public function create(array $params = []): Object
+  {
+    $path = 'review-messages';
 
-      return $this->client->request(
-        'post',
-        $path,
-        ['json' => $params],
-      );
-    }
+    return $this->client->request(
+      'post',
+      $path,
+      ['json' => $params],
+    );
+  }
 }
