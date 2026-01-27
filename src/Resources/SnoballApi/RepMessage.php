@@ -4,10 +4,10 @@ namespace Bestcompany\BestcompanyApi\Resources\SnoballApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class SalesRepReferral extends Resource
+class RepMessage extends Resource
 {
   /**
-   * Create a access request.
+   * Create a rep message.
    *
    * @param array $params array of access request properties
    *   *
@@ -24,3 +24,4 @@ class SalesRepReferral extends Resource
     );
   }
 }
+
