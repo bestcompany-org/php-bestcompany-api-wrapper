@@ -124,6 +124,7 @@ class CompanyController extends Controller
 
 #### SnoballApi Resources
 - `referralRequest()` - Referral request management
+- `repConversation()` - Rep conversation management
 - `salesRepReferral()` - Sales representative referral operations
 
 ### Configuration
