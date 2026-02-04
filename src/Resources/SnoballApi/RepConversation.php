@@ -10,7 +10,7 @@ class RepConversation extends Resource
    * Create a rep conversation.
    *
    * @param array $params array of rep conversation properties
-   *   *
+   *
    * @return Object
    */
   public function create(array $params = []): Object
