@@ -2,7 +2,7 @@
 
 return [
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | API Key
     |--------------------------------------------------------------------------
@@ -11,16 +11,16 @@ return [
     |
     */
 
-  'api_key' => env('BC_API_KEY', null),
+    'api_key' => env('BC_API_KEY', null),
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Hostname
     |--------------------------------------------------------------------------
     */
 
-  'hostname' => env('BC_HOSTNAME', 'https://api.bestcompany.com/api'),
+    'hostname' => env('BC_HOSTNAME', 'https://api.bestcompany.com/api'),
 
-  'version' => env('BC_API_VERSION', 'v1')
+    'version' => env('BC_API_VERSION', 'v1'),
 
 ];

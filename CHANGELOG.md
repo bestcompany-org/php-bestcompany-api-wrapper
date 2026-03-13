@@ -2,6 +2,10 @@
 
 All notable changes to `bestcompany-api` will be documented in this file
 
+## 0.10.0 - 2026-03-11
+
+- Added `ReviewSubmitted` resource to SnoballApi
+
 ## 0.9.0 - 2026-02-04
 
 - Added `RepConversation` resource to SnoballApi

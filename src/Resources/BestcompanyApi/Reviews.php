@@ -9,7 +9,7 @@ class Reviews extends Resource
     /**
      * Get all reviews.
      *
-     * @return Object
+     * @return object
      */
     public function all(array $params = [])
     {
@@ -26,37 +26,34 @@ class Reviews extends Resource
     /**
      * Get a Review.
      *
-     * @param int $id
-     *
-     * @return Object
+     * @param  int  $id
+     * @return object
      */
     public function getById($id, $params = [])
     {
-      $path = 'reviews/'.$id;
+        $path = 'reviews/'.$id;
 
-      return $this->client->request(
-        'get',
-        $path,
-        [],
-        http_build_query($params)
-      );
+        return $this->client->request(
+            'get',
+            $path,
+            [],
+            http_build_query($params)
+        );
     }
 
     /**
      * Create a Review only for testing purposes.
      *
-     * @param int $id
-     *
-     * @return Object
+     * @param  int  $id
      */
-    public function create(array $params = []): Object
+    public function create(array $params = []): object
     {
-      $path = 'reviews';
+        $path = 'reviews';
 
-      return $this->client->request(
-        'post',
-        $path,
-        ['json' => $params],
-      );
+        return $this->client->request(
+            'post',
+            $path,
+            ['json' => $params],
+        );
     }
 }

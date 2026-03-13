@@ -5,7 +5,7 @@ namespace Bestcompany\BestcompanyApi;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Bestcompany\BestcompanyApi\SnoballApi
+ * @see SnoballApi
  */
 class SnoballApiFacade extends Facade
 {

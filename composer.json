@@ -21,6 +21,7 @@
         "illuminate/support": "^11.0|^12.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.29",
         "orchestra/testbench": "^9.2|^10.0",
         "phpunit/phpunit": "^10.3|^11.0",
         "vlucas/phpdotenv": "^5.5"
@@ -39,6 +40,7 @@
         }
     },
     "scripts": {
+        "pint": "vendor/bin/pint",
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },

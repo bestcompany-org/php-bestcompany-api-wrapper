@@ -2,20 +2,22 @@
 
 namespace Bestcompany\BestcompanyApi\Resources;
 
+use Bestcompany\BestcompanyApi\Http\Client;
+
 abstract class Resource
 {
-  /**
-   * @var \Bestcompany\BestcompanyApi\Http\Client
-   */
-  protected $client;
+    /**
+     * @var Client
+     */
+    protected $client;
 
-  /**
-   * Makin' a good old resource.
-   *
-   * @param \Bestcompany\BestcompanyApi\Http\Client $client
-   */
-  public function __construct($client)
-  {
-    $this->client = $client;
-  }
+    /**
+     * Makin' a good old resource.
+     *
+     * @param  Client  $client
+     */
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 }

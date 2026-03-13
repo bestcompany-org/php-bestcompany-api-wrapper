@@ -4,17 +4,16 @@ namespace Bestcompany\BestcompanyApi\Resources\SnoballApi;
 
 use Bestcompany\BestcompanyApi\Resources\Resource;
 
-class RepMessage extends Resource
+class ReviewSubmitted extends Resource
 {
     /**
-     * Create a rep message.
+     * Notify Snoball that a review was submitted.
      *
-     * @param  array  $params  array of access request properties
-     *                         *
+     * @param  array  $params  array containing review_id
      */
     public function create(array $params = []): object
     {
-        $path = 'rep-message';
+        $path = 'review-submitted';
 
         return $this->client->request(
             'post',

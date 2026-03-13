@@ -2,7 +2,4 @@
 
 namespace Bestcompany\BestcompanyApi\Exceptions;
 
-class SignatureVerificationException extends \Exception
-{
-
-}
+class SignatureVerificationException extends \Exception {}

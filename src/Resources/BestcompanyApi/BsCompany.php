@@ -6,41 +6,37 @@ use Bestcompany\BestcompanyApi\Resources\Resource;
 
 class BsCompany extends Resource
 {
-  /**
-   * Get a Company.
-   *
-   * @param int $id
-   *
-   * @return Object
-   */
-  public function getById($id, $params = []): Object
-  {
-    $path = 'bs-companies/' . $id;
+    /**
+     * Get a Company.
+     *
+     * @param  int  $id
+     */
+    public function getById($id, $params = []): object
+    {
+        $path = 'bs-companies/'.$id;
 
-    return $this->client->request(
-      'get',
-      $path,
-      [],
-      http_build_query($params)
-    );
-  }
+        return $this->client->request(
+            'get',
+            $path,
+            [],
+            http_build_query($params)
+        );
+    }
 
-  /**
-   * Get a BSCompany from a BCCompanyId.
-   *
-   * @param int $id
-   *
-   * @return Object
-   */
-  public function getByBcCompanyId($id, $params = []): Object
-  {
-    $path = 'bs-companies/' . $id . '/bcid';
+    /**
+     * Get a BSCompany from a BCCompanyId.
+     *
+     * @param  int  $id
+     */
+    public function getByBcCompanyId($id, $params = []): object
+    {
+        $path = 'bs-companies/'.$id.'/bcid';
 
-    return $this->client->request(
-      'get',
-      $path,
-      [],
-      http_build_query($params)
-    );
-  }
+        return $this->client->request(
+            'get',
+            $path,
+            [],
+            http_build_query($params)
+        );
+    }
 }

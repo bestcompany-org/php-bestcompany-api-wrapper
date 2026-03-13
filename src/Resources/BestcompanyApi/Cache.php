@@ -6,24 +6,22 @@ use Bestcompany\BestcompanyApi\Resources\Resource;
 
 class Cache extends Resource
 {
-  /**
-   * Flush cache object by tag.
-   *
-   * @param array $tags
-   *   *
-   * @return Object
-   */
-  public function flushByTags(array $tags = []): Object
-  {
-    $path = 'cache-flush';
+    /**
+     * Flush cache object by tag.
+     *
+     *   *
+     */
+    public function flushByTags(array $tags = []): object
+    {
+        $path = 'cache-flush';
 
-    return $this->client->request(
-      'post',
-      $path,
-      ['json' => [
-          'tags' => $tags
-        ]
-      ],
-    );
-  }
+        return $this->client->request(
+            'post',
+            $path,
+            ['json' => [
+                'tags' => $tags,
+            ],
+            ],
+        );
+    }
 }

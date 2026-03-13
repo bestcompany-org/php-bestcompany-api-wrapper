@@ -6,50 +6,46 @@ use Bestcompany\BestcompanyApi\Resources\Resource;
 
 class Companies extends Resource
 {
-  /**
-   * Get all companies.
-   *
-   * @return Object
-   */
-  public function all(array $params = []): Object
-  {
-    $path = 'companies';
+    /**
+     * Get all companies.
+     */
+    public function all(array $params = []): object
+    {
+        $path = 'companies';
 
-    return $this->client->request(
-      'get',
-      $path,
-      [],
-      http_build_query($params)
-    );
-  }
+        return $this->client->request(
+            'get',
+            $path,
+            [],
+            http_build_query($params)
+        );
+    }
 
-  /**
-   * Get a Company.
-   *
-   * @param int $id
-   *
-   * @return Object
-   */
-  public function getById($id, $params = []): Object
-  {
-    $path = 'companies/' . $id;
+    /**
+     * Get a Company.
+     *
+     * @param  int  $id
+     */
+    public function getById($id, $params = []): object
+    {
+        $path = 'companies/'.$id;
 
-    return $this->client->request(
-      'get',
-      $path,
-      [],
-      http_build_query($params)
-    );
-  }
+        return $this->client->request(
+            'get',
+            $path,
+            [],
+            http_build_query($params)
+        );
+    }
 
-  public function recommendations($params = []): Object
-  {
-    $path = 'companies/recommend';
+    public function recommendations($params = []): object
+    {
+        $path = 'companies/recommend';
 
-    return $this->client->request(
-      'post',
-      $path,
-      ['json' => $params],
-    );
-  }
+        return $this->client->request(
+            'post',
+            $path,
+            ['json' => $params],
+        );
+    }
 }
