@@ -2,8 +2,11 @@
 
 namespace Bestcompany\BestcompanyApi\Resources\SnoballApi;
 
+use Bestcompany\BestcompanyApi\Exceptions\SnoballApiException;
 use Bestcompany\BestcompanyApi\Resources\Resource;
 use Bestcompany\BestcompanyApi\SnoballApi;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 
 class ReferralRequest extends Resource
 {
@@ -19,17 +22,24 @@ class ReferralRequest extends Resource
      * Create a referral request.
      *
      * @param  array  $params  array of referral request properties
+     *
+     * @throws SnoballApiException when the API returns a 4xx/5xx response;
+     *                             inspect the structured error to decide what to surface
      */
     public function create(array $params = []): object
     {
         $path = 'referral-request';
         $snoballApi = $this->getSnoballClient();
 
-        return $snoballApi->getClient()->request(
-            'post',
-            $path,
-            ['json' => $params],
-        );
+        try {
+            return $snoballApi->getClient()->request(
+                'post',
+                $path,
+                ['json' => $params],
+            );
+        } catch (ClientException|ServerException $e) {
+            throw SnoballApiException::fromGuzzle($e);
+        }
     }
 
     /**
