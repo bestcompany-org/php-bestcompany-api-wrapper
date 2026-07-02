@@ -219,6 +219,43 @@ $snoballApi->companies(); // ❌ Not available in SnoballApi
 
 The error messages will show you which resources are available for each API client.
 
+#### Structured request errors (SnoballApi referral requests)
+
+When a Snoball API request fails, the resource throws a typed
+`Bestcompany\BestcompanyApi\Exceptions\SnoballApiException` instead of a raw Guzzle
+exception. It carries a stable, machine-readable
+`Bestcompany\BestcompanyApi\Enums\SnoballApiErrorCode` and — importantly — the server's
+own judgment of whether the error is safe to show an end user, so you never have to
+string-match a message to decide what to surface:
+
+```php
+use Bestcompany\BestcompanyApi\Exceptions\SnoballApiException;
+
+try {
+    $referralRequest = SnoballApi::referralRequest()->create($params);
+} catch (SnoballApiException $e) {
+    if ($e->hasFieldErrors()) {
+        // Per-field validation errors, keyed by input name — map onto your form.
+        return back()->withErrors($e->fieldErrors());
+    }
+
+    if ($e->isUserSafe()) {
+        // The server marked this message safe to show the person filling out the form.
+        return back()->with('error', $e->displayMessage());
+    }
+
+    // Config/server problem — log it and show a generic message.
+    report($e);
+    return back()->with('error', 'Something went wrong — please contact support.');
+}
+```
+
+Switch on `$e->errorCode()` when you need to react to a specific condition (e.g.
+`SnoballApiErrorCode::ReferralLimitReached`). Any code the server introduces before this
+SDK is upgraded resolves to `null`; treat unknown codes as not user-safe. Responses that
+predate the structured envelope degrade gracefully — `errorCode()` is `null`,
+`isUserSafe()` is `false`, and `getMessage()` returns the raw body message.
+
 If you discover any security related issues, please email technology@bestcompany.com instead of using the issue tracker.
 
 ## Credits

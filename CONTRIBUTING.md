@@ -52,4 +52,21 @@ If the project maintainer has any additional requirements, you will find them li
 
 - **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](https://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
 
+## Versioning & releases
+
+This package follows [SemVer v2.0.0](https://semver.org/). For this wrapper specifically:
+
+- **MAJOR** — a breaking change to the public contract: an altered method signature, a changed
+  response/return shape, or a change to which exceptions a method throws.
+- **MINOR** — additive, backwards-compatible: a new resource or method.
+- **PATCH** — a bug fix with no change to the public surface.
+
+Consumers should pin with a caret constraint (e.g. `"bestcompany/bestcompany-api": "^1.0"`).
+
+### Releasing
+
+1. Keep an `## Unreleased` section at the top of `CHANGELOG.md`; add entries there as you merge.
+2. To release, rename `## Unreleased` to `## X.Y.Z - YYYY-MM-DD` and open a fresh empty `## Unreleased`.
+3. Tag the release: `git tag vX.Y.Z && git push origin vX.Y.Z`. Composer resolves versions from tags.
+
 **Happy coding**!

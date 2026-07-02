@@ -2,6 +2,10 @@
 
 All notable changes to `bestcompany-api` will be documented in this file
 
+## Unreleased
+
+- Added structured error handling for `SnoballApi::referralRequest()->create()`. 4xx/5xx responses now throw a typed `Bestcompany\BestcompanyApi\Exceptions\SnoballApiException` carrying a machine-readable `Bestcompany\BestcompanyApi\Enums\SnoballApiErrorCode`, a `user_safe` flag, an optional end-user `display_message`, and per-field validation errors — so consumers can decide what to surface without string-matching. Responses without the envelope degrade gracefully (null code, not user-safe). Other resources are unchanged.
+
 ## 0.10.0 - 2026-03-11
 
 - Added `ReviewSubmitted` resource to SnoballApi
